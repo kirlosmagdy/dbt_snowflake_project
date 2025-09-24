@@ -1,4 +1,4 @@
-# End-to-End Data Engineering Project with dbt, Snowflake & Apache Airflow
+# End-to-End Data Engineering Project with dbt, Snowflake 
 
 ## 📌 Overview
 This project demonstrates a **complete data engineering pipeline** built using:
