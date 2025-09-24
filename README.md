@@ -24,3 +24,63 @@ The pipeline covers:
 ---
 
 ## 📂 Project Structure
+snowflake_data_project/
+│── models/ # dbt models (staging, marts, transformations)
+│── dags/ # Airflow DAGs for scheduling workflows
+│── logs/ # Airflow logs
+│── seeds/ # Sample seed data for dbt
+│── macros/ # Custom dbt macros
+│── dbt_project.yml # Main dbt configuration file
+│── README.md # Documentation
+
+
+
+---
+
+## 🚀 Setup & Installation
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/kirlosmagdy/dbt_snowflake_project.git
+cd dbt_snowflake_project
+```
+
+### 2. Set Up Virtual Environment
+
+```bash
+python -m venv venv        # Activate venv
+source venv/bin/activate   # Mac/Linux
+venv\Scripts\activate      # Windows
+```
+
+### 3. Configure dbt Connection to Snowflake
+
+Update the profiles.yml file in ~/.dbt/ with your Snowflake credentials:
+
+snowflake_project:
+  outputs:
+    dev:
+      type: snowflake
+      account: your_snowflake_account
+      database: finance_db
+      user: dbt_user
+      password: your_password
+      warehouse: finance_wh
+      role: ACCOUNTADMIN
+      schema: raw
+  target: dev
+
+
+### 4. Run dbt Models
+
+```bash
+dbt run        # Build models
+dbt test       # Run tests to validate data integrity
+```
+
+## 📊 Data Flow
+
+1- Raw data ingestion → Snowflake raw schema
+2- Staging models → Cleaned and structured layer in Snowflake
+3- Marts layer → Business-focused tables for analytics and reporting
