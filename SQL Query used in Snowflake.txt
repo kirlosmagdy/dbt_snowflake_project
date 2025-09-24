@@ -1,0 +1,150 @@
+-- create my warehouse called finance_wh
+
+CREATE OR REPLACE WAREHOUSE finance_wh 
+WITH WAREHOUSE_SIZE = 'XSMALL'
+AUTO_SUSPEND = 60
+AUTO_RESUME = TRUE
+INITIALLY_SUSPENDED = TRUE ;
+
+
+
+CREATE OR REPLACE DATABASE finance_db ;  -- create my database called finance_db
+CREATE OR REPLACE SCHEMA raw ;   -- create my schema called raw
+
+
+
+
+-- create my tables 
+
+-- 1- create table customers 
+CREATE OR REPLACE TABLE raw.customers(
+    id INT PRIMARY KEY,
+    name VARCHAR,
+    email VARCHAR,
+    country VARCHAR
+    
+);
+
+
+-- 2- create table orders 
+CREATE OR REPLACE TABLE raw.orders(
+    id INT PRIMARY KEY,
+    customer_id INT,
+    order_date DATE,
+    total_amount INT,
+    status VARCHAR
+);
+
+
+-- 3- create table order_items
+CREATE OR REPLACE TABLE raw.order_items(
+    id INT,
+    order_id INT,
+    product_id INT,
+    quantity INT,
+    unit_price INT
+);
+
+
+-- 4- create table products
+CREATE OR REPLACE TABLE raw.products(
+    id INT PRIMARY KEY,
+    name STRING,
+    category STRING,
+    price INT
+);
+
+
+
+
+-- use copy into for large data or if using cloud 
+-- use staging to make copy into
+-- I used copy into and stage on products table only 
+CREATE OR REPLACE STAGE finance_stage
+FILE_FORMAT = (TYPE = 'CSV' SKIP_HEADER = 1);
+
+COPY INTO raw.products
+FROM @finance_stage/products.csv
+FILE_FORMAT = (TYPE = 'CSV' SKIP_HEADER = 1);
+
+
+
+
+
+-- to get the data needed for the dbt 
+SELECT lower(CURRENT_REGION()) , lower(CURRENT_ACCOUNT());
+SELECT CURRENT_USER();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
