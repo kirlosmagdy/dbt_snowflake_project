@@ -22,6 +22,7 @@ The pipeline covers:
 snowflake_data_project/
 
 │── models/ # dbt models (staging, marts, transformations)
+
 │── seeds/ # Sample seed data for dbt
 
 │── macros/ # Custom dbt macros
