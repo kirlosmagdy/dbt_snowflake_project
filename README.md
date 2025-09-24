@@ -74,5 +74,7 @@ dbt test       # Run tests to validate data integrity
 ## 📊 Data Flow
 
 1- Raw data ingestion → Snowflake raw schema
+
 2- Staging models → Cleaned and structured layer in Snowflake
+
 3- Marts layer → Business-focused tables for analytics and reporting
